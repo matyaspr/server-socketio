@@ -6,6 +6,21 @@ const Socket = require('../Model/Socket');
 const cors = require('cors');
 
 
+ const whiteList = [
+    'http://localhost:3000',
+]
+
+var corsOptions = {
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
+  }
+
+
 
 
 // clase para inicializar el server y configurar los sockets
@@ -24,10 +39,12 @@ class Server {
     }
 
 
+
+
     middleware() {
         this.app.use( express.static( path.resolve( __dirname, '../Public') ) )
 
-        this.app.use( cors() );
+        this.app.use( cors(corsOptions) );
     }
 
 

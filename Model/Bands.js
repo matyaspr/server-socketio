@@ -17,7 +17,6 @@ class Bands {
 
     addBand(bandName) {
         this.bands.push(new Band(bandName));
-        
         return this.bands;
     }
 
@@ -40,6 +39,16 @@ class Bands {
         return this.bands;
     }
 
+
+    decrease(bandId) {
+        this.bands.forEach(band => {
+            if (band.id === bandId && band.votes > 0) {
+                band.votes--;
+            }
+        });
+        
+        return this.bands;
+    }
 
     changeName(bandId, newName) {
         this.bands.forEach(band => {
